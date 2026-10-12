@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Expense Tracker — Track income and expenses with CRUD operations and localStorage persistence." />
+  <title>Expense Tracker — OJT Capstone</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='20' width='100' height='100' fill='%232a9d8f'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>DA</text></svg>" />
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar-->
+  <nav class="navbar">
+    <div class="container">
+      <a href="https://iamshkzahid.github.io/team-agency-portfolio/" class="navbar-brand">Dev Agency</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="https://iamshkzahid.github.io/team-agency-portfolio/">← Back to Portfolio</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">Dark</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="section">
+    <div class="container">
+      <a href="https://iamshkzahid.github.io/team-agency-portfolio/" class="back-link">← Back to Portfolio</a>
+      <h1 class="section-title">Expense Tracker</h1>
+
+      <div class="expense-wrapper">
+
+        <!-- Summary Card -->
+        <div class="summary-grid">
+          <div class="card summary-card">
+            <div class="summary-label">Total Income</div>
+            <div class="summary-value income" id="total-income">0.00</div>
+          </div>
+          <div class="card summary-card">
+            <div class="summary-label">Total Expense</div>
+            <div class="summary-value expense" id="total-expense">0.00</div>
+          </div>
+          <div class="card summary-card">
+            <div class="summary-label">Balance</div>
+            <div class="summary-value" id="balance">0.00</div>
+          </div>
+        </div>
+
+        <!-- Add Transaction Form -->
+        <form class="card expense-form" id="transaction-form" novalidate>
+          <h2>Add Transaction</h2>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="e.g., Salary, Groceries" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="amount">Amount (₹)</label>
+              <input type="number" id="amount" placeholder="0.00" min="0" step="0.01" />
+            </div>
+            <div class="form-group">
+              <label for="type">Type</label>
+              <select id="type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-btn">Add Transaction</button>
+        </form>
+
+        <!-- Transaction List -->
+        <div class="transaction-header">
+          <h2>Transaction History</h2>
+          <span class="counter-badge" id="transaction-count">0 transactions</span>
+        </div>
+        <div id="transaction-list">
+          <!-- Transactions will be rendered here by ui.js -->
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Dev Agency — Expense Tracker</p>
+  </footer>
+
+  <!-- Scripts: storage first, then state, then ui, then main -->
+  <script src="js/theme.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
