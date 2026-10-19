@@ -7,7 +7,7 @@
 [data-theme="dark"] {
   /* Brand Core Palette */
   --bg-main: #0B1020;
-  --bg-sidebar: #11182A;
+  --bg-sidebar: rgba(17, 24, 42, 0.94);
   --bg-card: #11182A;
   --bg-elevated: #171F33;
   --bg-input: #171F33;
@@ -38,15 +38,27 @@
   --danger-hover: #F43F5E;
 
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
 
   --backdrop-modal: rgba(5, 8, 18, 0.75);
+
+  /* Modern Glassmorphic & Header/Sidebar Tokens */
+  --glass-sidebar: rgba(17, 24, 42, 0.88);
+  --glass-header: rgba(11, 16, 32, 0.82);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-subtle: rgba(255, 255, 255, 0.04);
+  --glass-card: rgba(23, 31, 51, 0.65);
+  --brand-gradient: linear-gradient(135deg, #A78BFA 0%, #8B7CFF 40%, #6366F1 100%);
+  --cta-gradient: linear-gradient(135deg, #8B7CFF 0%, #6366F1 60%, #4F46E5 100%);
+  --cta-glow: 0 4px 18px rgba(139, 124, 255, 0.45);
+  --nav-active-bg: linear-gradient(90deg, rgba(139, 124, 255, 0.16) 0%, rgba(99, 102, 241, 0.04) 100%);
+  --nav-active-glow: 0 0 12px rgba(139, 124, 255, 0.5);
 }
 
 [data-theme="light"] {
   --bg-main: #F8FAFC;
-  --bg-sidebar: #FFFFFF;
+  --bg-sidebar: rgba(255, 255, 255, 0.94);
   --bg-card: #FFFFFF;
   --bg-elevated: #F1F5F9;
   --bg-input: #FFFFFF;
@@ -77,10 +89,22 @@
   --danger-hover: #BE123C;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 8px -1px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 
   --backdrop-modal: rgba(15, 23, 42, 0.45);
+
+  /* Modern Glassmorphic & Header/Sidebar Tokens */
+  --glass-sidebar: rgba(255, 255, 255, 0.92);
+  --glass-header: rgba(248, 250, 252, 0.86);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-subtle: rgba(0, 0, 0, 0.04);
+  --glass-card: rgba(255, 255, 255, 0.8);
+  --brand-gradient: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+  --cta-gradient: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+  --cta-glow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  --nav-active-bg: linear-gradient(90deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 124, 255, 0.03) 100%);
+  --nav-active-glow: 0 2px 8px rgba(99, 102, 241, 0.25);
 }
 
 /* ============================================================
@@ -97,6 +121,7 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -107,6 +132,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
