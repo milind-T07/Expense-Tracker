@@ -14,4 +14,5 @@ Thumbs.db
 
 # Dependencies (not used, but just in case)
 node_modules/
-
+# Temporary staging
+.staging_commits/
