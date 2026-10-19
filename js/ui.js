@@ -81,6 +81,58 @@ function formatDate(dateStr) {
 }
 
 /**
+ * Synchronizes the top header breadcrumbs, live balance chip, and sidebar stats.
+ */
+function syncHeaderAndSidebar(viewName) {
+  const current = viewName || currentView || "overview";
+
+  // 1. Update breadcrumb text and icon
+  const breadcrumbIcon = document.getElementById("header-breadcrumb-icon");
+  const breadcrumbText = document.getElementById("header-breadcrumb-text");
+
+  const viewConfig = {
+    overview: { label: "Overview", icon: "layout-dashboard" },
+    transactions: { label: "Transactions", icon: "arrow-left-right" },
+    analytics: { label: "Analytics", icon: "bar-chart-3" },
+    settings: { label: "Settings", icon: "sliders-horizontal" }
+  };
+
+  const cfg = viewConfig[current] || viewConfig.overview;
+  if (breadcrumbText) breadcrumbText.textContent = cfg.label;
+  if (breadcrumbIcon) breadcrumbIcon.setAttribute("data-lucide", cfg.icon);
+
+  // 2. Update transaction count badge in sidebar
+  const txBadge = document.getElementById("sidebar-tx-badge");
+  const txCount = Array.isArray(transactions) ? transactions.length : 0;
+  if (txBadge) {
+    txBadge.textContent = txCount;
+  }
+
+  // 3. Update storage caption and progress bar in sidebar footer
+  const storageCaption = document.getElementById("sidebar-storage-caption");
+  const storageFill = document.getElementById("sidebar-storage-fill");
+  if (storageCaption) {
+    storageCaption.textContent = `${txCount} record${txCount === 1 ? "" : "s"} saved • Local Vault`;
+  }
+  if (storageFill) {
+    const pct = Math.min(100, Math.max(15, txCount * 6));
+    storageFill.style.width = `${pct}%`;
+  }
+
+  // 4. Update Header Live Net Balance chip
+  const headerBalance = document.getElementById("header-balance-amount");
+  if (headerBalance && typeof calculateMetrics === "function") {
+    const metrics = calculateMetrics(transactions);
+    headerBalance.textContent = formatCurrency(metrics.balance);
+    if (metrics.balance < 0) {
+      headerBalance.style.color = "var(--expense)";
+    } else {
+      headerBalance.style.color = "var(--income)";
+    }
+  }
+}
+
+/**
  * Switches the primary view and updates URL hash.
  */
 function switchView(viewName) {
@@ -128,6 +180,9 @@ function switchView(viewName) {
     renderSettingsPage();
   }
 
+  // Sync header breadcrumbs & sidebar badges
+  syncHeaderAndSidebar(viewName);
+
   // Close mobile sidebar if open
   closeMobileSidebar();
 
@@ -146,6 +201,7 @@ function switchView(viewName) {
  * ============================================================
  */
 function renderOverview() {
+  syncHeaderAndSidebar("overview");
   const metrics = calculateMetrics(transactions);
 
   // 1. Total Balance
@@ -273,6 +329,7 @@ function renderRecentTransactionsList() {
  * ============================================================
  */
 function renderTransactionsPage() {
+  syncHeaderAndSidebar("transactions");
   populateCategoryFilterOptions();
 
   const filtered = filterTransactions(activeFilters);
@@ -416,6 +473,7 @@ function resetFilters() {
  * ============================================================
  */
 function renderAnalyticsPage() {
+  syncHeaderAndSidebar("analytics");
   const metrics = calculateMetrics(transactions);
   const expenseBreakdown = getCategoryBreakdown("expense");
   const incomeBreakdown = getCategoryBreakdown("income");
@@ -502,6 +560,7 @@ function renderAnalyticsPage() {
  * ============================================================
  */
 function renderSettingsPage() {
+  syncHeaderAndSidebar("settings");
   // Currency select
   const currencySelect = document.getElementById("settings-currency-select");
   if (currencySelect) {
@@ -812,6 +871,7 @@ function closeConfirmModal() {
  * Refreshes currently visible view.
  */
 function refreshCurrentView() {
+  syncHeaderAndSidebar(currentView);
   if (currentView === "overview") renderOverview();
   else if (currentView === "transactions") renderTransactionsPage();
   else if (currentView === "analytics") renderAnalyticsPage();
