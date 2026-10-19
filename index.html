@@ -15,11 +15,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
 
   <!-- External Visual Libraries (CDN with fallback support) -->
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Prevent Theme Flash -->
+  <script>
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var urlTheme = params.get("theme");
+        var savedTheme = localStorage.getItem("expense-tracker-theme");
+        var activeTheme = (urlTheme === "light" || urlTheme === "dark") ? urlTheme : (savedTheme || "dark");
+        document.documentElement.setAttribute("data-theme", activeTheme);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -125,7 +138,7 @@
           </div>
           <p class="status-caption" id="sidebar-storage-caption">0 transactions saved</p>
           <div class="sidebar-progress-track">
-            <div class="sidebar-progress-fill" id="sidebar-storage-fill" style="width: 0%;"></div>
+            <div class="sidebar-progress-fill" id="sidebar-storage-fill"></div>
           </div>
         </div>
       </div>
