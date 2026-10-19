@@ -36,6 +36,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // 10. Load Initial View (from hash or default to overview)
   const initialHash = window.location.hash.replace("#", "") || "overview";
   switchView(initialHash);
+
+  // 11. Support URL parameters (?demo=1, ?theme=light/dark, ?sidebar=open)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("demo") === "1") {
+    if (transactions.length === 0) loadSampleData();
+    refreshCurrentView();
+  }
+  if (urlParams.get("theme") === "light") {
+    applyTheme("light");
+  } else if (urlParams.get("theme") === "dark") {
+    applyTheme("dark");
+  }
+  if (urlParams.get("sidebar") === "open") {
+    toggleMobileSidebar();
+  }
 });
 
 /**
@@ -79,6 +94,20 @@ function setupNavigation() {
   const viewAllBtn = document.getElementById("btn-view-all-tx");
   if (viewAllBtn) {
     viewAllBtn.addEventListener("click", () => switchView("transactions"));
+  }
+
+  // Quick Backup in Sidebar Footer
+  const sidebarBackupBtn = document.getElementById("sidebar-quick-backup");
+  if (sidebarBackupBtn) {
+    sidebarBackupBtn.addEventListener("click", () => {
+      if (!transactions || transactions.length === 0) {
+        showToast("No transactions available to export.", "info");
+        return;
+      }
+      const json = exportTransactionsJSON();
+      downloadFile(json, `ledger-vault-backup-${new Date().toISOString().split("T")[0]}.json`, "application/json");
+      showToast("Vault JSON backup downloaded", "success");
+    });
   }
 }
 
@@ -140,16 +169,45 @@ function setupTransactionModal() {
  * Filter, Search, and Sort Handlers on Transactions Page.
  */
 function setupTransactionFilters() {
-  // Search input
+  // Transactions Page Search Input
   const searchInput = document.getElementById("search-input");
+  const headerSearchInput = document.getElementById("header-search-input");
+
   if (searchInput) {
     let debounceTimer;
     searchInput.addEventListener("input", e => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         activeFilters.search = e.target.value;
+        if (headerSearchInput && headerSearchInput.value !== e.target.value) {
+          headerSearchInput.value = e.target.value;
+        }
         renderTransactionsPage();
       }, 200);
+    });
+  }
+
+  // Top Header Global Search Input
+  if (headerSearchInput) {
+    let headerDebounceTimer;
+    headerSearchInput.addEventListener("input", e => {
+      clearTimeout(headerDebounceTimer);
+      headerDebounceTimer = setTimeout(() => {
+        if (currentView !== "transactions") {
+          switchView("transactions");
+        }
+        activeFilters.search = e.target.value;
+        if (searchInput && searchInput.value !== e.target.value) {
+          searchInput.value = e.target.value;
+        }
+        renderTransactionsPage();
+      }, 200);
+    });
+
+    headerSearchInput.addEventListener("keydown", e => {
+      if (e.key === "Enter" && currentView !== "transactions") {
+        switchView("transactions");
+      }
     });
   }
 
@@ -331,7 +389,9 @@ function setupSettingsHandlers() {
  */
 function setupGlobalEvents() {
   document.addEventListener("keydown", e => {
-    // Esc closes open modals
+    const isInputActive = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName);
+
+    // Esc closes open modals or mobile sidebar
     if (e.key === "Escape") {
       const txModal = document.getElementById("transaction-modal");
       const confirmModal = document.getElementById("confirm-modal");
@@ -345,14 +405,47 @@ function setupGlobalEvents() {
       closeMobileSidebar();
     }
 
-    // Ctrl+N or Cmd+N opens Add Transaction
+    // Ctrl+K or Cmd+K focuses global search bar
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
       e.preventDefault();
+      const headerSearchInput = document.getElementById("header-search-input");
       const searchInput = document.getElementById("search-input");
-      if (currentView !== "transactions") switchView("transactions");
-      setTimeout(() => {
-        if (searchInput) searchInput.focus();
-      }, 150);
+
+      if (headerSearchInput && window.innerWidth > 992) {
+        headerSearchInput.focus();
+        headerSearchInput.select();
+      } else {
+        if (currentView !== "transactions") switchView("transactions");
+        setTimeout(() => {
+          if (searchInput) {
+            searchInput.focus();
+            searchInput.select();
+          }
+        }, 150);
+      }
+    }
+
+    // Shortcut: 'n' or 'N' opens Add Transaction modal (when not typing in an input)
+    if (!isInputActive && !e.ctrlKey && !e.metaKey && !e.altKey && e.key.toLowerCase() === "n") {
+      e.preventDefault();
+      openTransactionModal();
+    }
+
+    // Shortcut: Number keys 1-4 switch views (when not typing in an input)
+    if (!isInputActive && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      if (e.key === "1") {
+        e.preventDefault();
+        switchView("overview");
+      } else if (e.key === "2") {
+        e.preventDefault();
+        switchView("transactions");
+      } else if (e.key === "3") {
+        e.preventDefault();
+        switchView("analytics");
+      } else if (e.key === "4") {
+        e.preventDefault();
+        switchView("settings");
+      }
     }
   });
 
