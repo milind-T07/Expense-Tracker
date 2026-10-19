@@ -33,15 +33,19 @@
       <div class="sidebar-header">
         <a href="#overview" class="brand-logo" onclick="switchView('overview'); return false;">
           <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 3v18h16"></path>
-              <path d="M4 11h11"></path>
-              <path d="M4 6h14"></path>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4v16h16"></path>
+              <path d="M4 14h10"></path>
+              <path d="M4 9h15"></path>
             </svg>
+            <div class="brand-icon-ambient"></div>
           </div>
           <div class="brand-text">
-            <span class="brand-name">Ledger</span>
-            <span class="brand-badge">SaaS</span>
+            <div class="brand-title-wrap">
+              <span class="brand-name">Ledger</span>
+              <span class="brand-badge"><span class="brand-badge-dot"></span>PRO</span>
+            </div>
+            <span class="brand-tagline">Financial Intelligence</span>
           </div>
         </a>
         <button class="icon-btn sidebar-close-btn" id="sidebar-close-btn" aria-label="Close menu">
@@ -49,35 +53,80 @@
         </button>
       </div>
 
+      <!-- Workspace Context Card -->
+      <div class="sidebar-workspace">
+        <div class="workspace-card" title="Active Vault: Personal Finance">
+          <div class="workspace-avatar">
+            <i data-lucide="wallet-cards"></i>
+          </div>
+          <div class="workspace-meta">
+            <span class="workspace-name">Personal Vault</span>
+            <span class="workspace-type">Local • Encrypted</span>
+          </div>
+          <span class="workspace-live-dot" title="Active & Synced"></span>
+        </div>
+      </div>
+
       <nav class="sidebar-nav">
-        <div class="nav-section-label">MAIN MENU</div>
+        <div class="nav-section-label">
+          <span>MAIN MENU</span>
+          <span class="section-divider-line"></span>
+        </div>
         <a href="#overview" class="nav-item active" data-view="overview" onclick="switchView('overview'); return false;">
-          <i data-lucide="layout-dashboard" class="nav-icon"></i>
-          <span>Overview</span>
+          <div class="nav-active-pill"></div>
+          <div class="nav-icon-box"><i data-lucide="layout-dashboard" class="nav-icon"></i></div>
+          <span class="nav-text">Overview</span>
+          <kbd class="nav-shortcut">1</kbd>
         </a>
         <a href="#transactions" class="nav-item" data-view="transactions" onclick="switchView('transactions'); return false;">
-          <i data-lucide="arrow-left-right" class="nav-icon"></i>
-          <span>Transactions</span>
+          <div class="nav-active-pill"></div>
+          <div class="nav-icon-box"><i data-lucide="arrow-left-right" class="nav-icon"></i></div>
+          <span class="nav-text">Transactions</span>
+          <span class="nav-badge" id="sidebar-tx-badge">0</span>
         </a>
         <a href="#analytics" class="nav-item" data-view="analytics" onclick="switchView('analytics'); return false;">
-          <i data-lucide="bar-chart-3" class="nav-icon"></i>
-          <span>Analytics</span>
+          <div class="nav-active-pill"></div>
+          <div class="nav-icon-box"><i data-lucide="bar-chart-3" class="nav-icon"></i></div>
+          <span class="nav-text">Analytics</span>
+          <kbd class="nav-shortcut">3</kbd>
         </a>
 
-        <div class="nav-section-label mt-4">PREFERENCES</div>
+        <div class="nav-section-label mt-4">
+          <span>PREFERENCES</span>
+          <span class="section-divider-line"></span>
+        </div>
         <a href="#settings" class="nav-item" data-view="settings" onclick="switchView('settings'); return false;">
-          <i data-lucide="settings-2" class="nav-icon"></i>
-          <span>Settings</span>
+          <div class="nav-active-pill"></div>
+          <div class="nav-icon-box"><i data-lucide="sliders-horizontal" class="nav-icon"></i></div>
+          <span class="nav-text">Settings</span>
+          <kbd class="nav-shortcut">4</kbd>
         </a>
+
+        <!-- Quick Action Button in Sidebar -->
+        <div class="sidebar-cta-wrap">
+          <button class="sidebar-quick-btn btn-open-add-tx" aria-label="Quick Add Entry">
+            <i data-lucide="plus-circle" class="quick-btn-icon"></i>
+            <span>Quick Entry</span>
+            <kbd class="quick-btn-kbd">N</kbd>
+          </button>
+        </div>
       </nav>
 
       <div class="sidebar-footer">
         <div class="sidebar-status-card">
-          <div class="status-indicator">
-            <span class="status-dot"></span>
-            <span class="status-label">Local-First Storage</span>
+          <div class="status-header">
+            <div class="status-indicator">
+              <span class="status-dot-pulse"></span>
+              <span class="status-label">Private Local Vault</span>
+            </div>
+            <button class="sidebar-action-icon-btn" id="sidebar-quick-backup" title="Export Backup JSON" aria-label="Export Backup">
+              <i data-lucide="download"></i>
+            </button>
           </div>
-          <p class="status-caption">Zero tracking. Your financial data stays private on this device.</p>
+          <p class="status-caption" id="sidebar-storage-caption">0 transactions saved</p>
+          <div class="sidebar-progress-track">
+            <div class="sidebar-progress-fill" id="sidebar-storage-fill" style="width: 0%;"></div>
+          </div>
         </div>
       </div>
     </aside>
