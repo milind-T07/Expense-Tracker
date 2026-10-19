@@ -140,23 +140,63 @@
           <button class="hamburger-btn" id="hamburger-btn" aria-label="Open sidebar menu" onclick="toggleMobileSidebar()">
             <i data-lucide="menu"></i>
           </button>
-          <div class="header-titles">
-            <h1 class="header-title" id="header-title">Overview</h1>
-            <p class="header-subtitle" id="header-subtitle">Financial snapshot, cash flow & recent activity</p>
+
+          <div class="header-breadcrumbs-and-titles">
+            <nav class="header-breadcrumbs" aria-label="Breadcrumb">
+              <span class="breadcrumb-item breadcrumb-home">
+                <i data-lucide="wallet" class="breadcrumb-icon"></i>
+                Ledger
+              </span>
+              <span class="breadcrumb-divider">/</span>
+              <span class="breadcrumb-item breadcrumb-active" id="header-breadcrumb-badge">
+                <i data-lucide="layout-dashboard" class="breadcrumb-view-icon" id="header-breadcrumb-icon"></i>
+                <span id="header-breadcrumb-text">Overview</span>
+              </span>
+            </nav>
+            <div class="header-titles">
+              <h1 class="header-title" id="header-title">Overview</h1>
+              <p class="header-subtitle" id="header-subtitle">Financial snapshot, cash flow & recent activity</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center Global Search & Command Bar -->
+        <div class="header-center">
+          <div class="header-search-bar" id="header-search-container">
+            <i data-lucide="search" class="header-search-icon"></i>
+            <input 
+              type="text" 
+              class="header-search-input" 
+              id="header-search-input" 
+              placeholder="Search transactions... (⌘K)" 
+              aria-label="Global search transactions" 
+              autocomplete="off"
+            />
+            <div class="header-search-kbd">
+              <kbd>⌘</kbd><kbd>K</kbd>
+            </div>
           </div>
         </div>
 
         <div class="header-actions">
+          <!-- Real-time Net Balance Pill -->
+          <div class="header-balance-chip" id="header-balance-chip" title="Total Net Cash Flow">
+            <span class="balance-chip-dot"></span>
+            <span class="balance-chip-label">Net:</span>
+            <span class="balance-chip-amount" id="header-balance-amount">₹0.00</span>
+          </div>
+
           <!-- Theme Toggle -->
-          <button class="btn btn-secondary theme-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <button class="theme-toggle-btn modern-toggle-btn" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
             <span class="theme-icon"><i data-lucide="sun"></i></span>
             <span class="theme-text">Light Mode</span>
           </button>
 
           <!-- Primary CTA -->
-          <button class="btn btn-primary btn-open-add-tx" id="header-add-btn" onclick="openTransactionModal()">
-            <i data-lucide="plus"></i>
-            <span>Add Transaction</span>
+          <button class="btn btn-primary header-add-tx-btn btn-open-add-tx" id="header-add-btn" onclick="openTransactionModal()" aria-label="Add Transaction">
+            <i data-lucide="plus" class="btn-icon"></i>
+            <span class="header-cta-label">Add Transaction</span>
+            <kbd class="header-btn-kbd">N</kbd>
           </button>
         </div>
       </header>
