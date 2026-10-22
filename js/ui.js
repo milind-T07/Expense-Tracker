@@ -266,7 +266,14 @@ function renderRecentTransactionsList() {
   if (recent.length === 0) {
     container.innerHTML = `
       <div class="empty-state-card">
-        <div class="empty-icon"><i data-lucide="receipt"></i></div>
+        <div class="empty-icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1Z"></path>
+            <path d="M14 8H8"></path>
+            <path d="M16 12H8"></path>
+            <path d="M13 16H8"></path>
+          </svg>
+        </div>
         <h4>No transactions yet</h4>
         <p>Start recording your daily income and expenses by clicking "Add Transaction" above.</p>
         <button class="btn btn-primary btn-sm" onclick="openTransactionModal()">
@@ -347,7 +354,14 @@ function renderTransactionsPage() {
       <tr>
         <td colspan="6" class="text-center py-8">
           <div class="empty-state-card">
-            <div class="empty-icon"><i data-lucide="search-x"></i></div>
+            <div class="empty-icon" aria-hidden="true">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+                <path d="m13.5 8.5-5 5"></path>
+                <path d="m8.5 8.5 5 5"></path>
+              </svg>
+            </div>
             <h4>No matching transactions</h4>
             <p>Try adjusting your search query, type, or date filters.</p>
             ${transactions.length === 0 ? `
