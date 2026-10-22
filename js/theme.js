@@ -1,6 +1,6 @@
 /* ============================================================
    THEME.JS — Dark/Light Mode Management (Dark-First Default)
-   Ledger Fintech SaaS Platform
+   Expense Tracker Fintech SaaS Platform
    ============================================================ */
 
 var THEME_STORAGE_KEY = "expense-tracker-theme";

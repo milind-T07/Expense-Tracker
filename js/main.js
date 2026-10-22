@@ -1,6 +1,6 @@
 /* ============================================================
    MAIN.JS — Application Orchestration & Event Binding
-   Ledger Fintech SaaS Platform
+   Expense Tracker Fintech SaaS Platform
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {

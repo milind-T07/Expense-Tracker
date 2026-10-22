@@ -1,6 +1,6 @@
 /* ============================================================
    CHARTS.JS — Chart.js Visualizations & Lifecycle Management
-   Ledger Fintech SaaS Platform
+   Expense Tracker Fintech SaaS Platform
    ============================================================ */
 
 var chartInstances = {};

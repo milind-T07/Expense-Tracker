@@ -1,6 +1,6 @@
 /* ============================================================
    UI.JS — Interface Rendering, View Routing & Interaction System
-   Ledger Fintech SaaS Platform
+   Expense Tracker Fintech SaaS Platform
    ============================================================ */
 
 // Active view state

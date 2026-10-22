@@ -1,6 +1,6 @@
 /* ============================================================
    STORAGE.JS — Data Persistence & Settings Management
-   Ledger Fintech SaaS Platform
+   Expense Tracker Fintech SaaS Platform
    ============================================================ */
 
 var STORAGE_KEY = "expense-tracker-transactions";

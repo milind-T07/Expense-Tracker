@@ -1,6 +1,6 @@
 /* ============================================================
    STATE.JS — Application State, Analytics & Calculation Logic
-   Ledger Fintech SaaS Platform
+   Expense Tracker Fintech SaaS Platform
    ============================================================ */
 
 // Primary state container
