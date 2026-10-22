@@ -7,7 +7,7 @@
   <title>Expense Tracker — Personal Finance & Cash Flow Management</title>
   
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect rx='24' width='100' height='100' fill='%238B7CFF'/><path d='M32 26v48h36M32 50h26' stroke='white' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23A78BFA'/><stop offset='100%' stop-color='%236366F1'/></linearGradient></defs><rect rx='26' width='100' height='100' fill='url(%23g)'/><path d='M28 66L44 48L56 58L72 34' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='72' cy='34' r='5' fill='%2310B981'/><path d='M26 74h48' stroke='rgba(255,255,255,0.4)' stroke-width='5' stroke-linecap='round'/></svg>" />
 
   <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,11 +45,12 @@
     <aside class="app-sidebar" id="app-sidebar">
       <div class="sidebar-header">
         <a href="#overview" class="brand-logo" onclick="switchView('overview'); return false;">
-          <div class="brand-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4v16h16"></path>
-              <path d="M4 14h10"></path>
-              <path d="M4 9h15"></path>
+          <div class="brand-icon" aria-hidden="true">
+            <svg class="brand-icon-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
+              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
+              <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
+              <path d="m9 15 2.5-2.5 2 2 3.5-3.5"></path>
             </svg>
             <div class="brand-icon-ambient"></div>
           </div>
@@ -157,7 +158,10 @@
           <div class="header-breadcrumbs-and-titles">
             <nav class="header-breadcrumbs" aria-label="Breadcrumb">
               <span class="breadcrumb-item breadcrumb-home">
-                <i data-lucide="wallet" class="breadcrumb-icon"></i>
+                <svg class="breadcrumb-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path>
+                  <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path>
+                </svg>
                 Expense Tracker
               </span>
               <span class="breadcrumb-divider">/</span>
