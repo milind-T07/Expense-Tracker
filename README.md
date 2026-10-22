@@ -1,8 +1,8 @@
-# Ledger — Premium Personal Finance & Expense Tracker
+# Expense Tracker — Premium Personal Finance & Cash Flow Analytics
 
 A modern, high-performance personal finance dashboard and expense tracker built as a standalone **Fintech SaaS** web application using **HTML5, CSS3, and ES6 JavaScript**.
 
-Ledger features a dark-first design system with deep navy surfaces, emerald income accents, coral expense accents, and restrained violet highlights. It operates 100% client-side with privacy-preserving `localStorage` persistence, real-time Chart.js cash flow analytics, and comprehensive transaction filtering.
+Expense Tracker features a dark-first design system with deep navy surfaces, emerald income accents, coral expense accents, and restrained violet highlights. It operates 100% client-side with privacy-preserving `localStorage` persistence, real-time Chart.js cash flow analytics, and comprehensive transaction filtering.
 
 ---
 
