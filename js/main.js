@@ -105,7 +105,7 @@ function setupNavigation() {
         return;
       }
       const json = exportTransactionsJSON();
-      downloadFile(json, `ledger-vault-backup-${new Date().toISOString().split("T")[0]}.json`, "application/json");
+      downloadFile(json, `expense-tracker-vault-backup-${new Date().toISOString().split("T")[0]}.json`, "application/json");
       showToast("Vault JSON backup downloaded", "success");
     });
   }
@@ -316,7 +316,7 @@ function setupSettingsHandlers() {
         return;
       }
       const csv = exportTransactionsCSV();
-      downloadFile(csv, `ledger-transactions-${new Date().toISOString().split("T")[0]}.csv`, "text/csv");
+      downloadFile(csv, `expense-tracker-transactions-${new Date().toISOString().split("T")[0]}.csv`, "text/csv");
       showToast("CSV export initiated", "success");
     });
   }
@@ -330,7 +330,7 @@ function setupSettingsHandlers() {
         return;
       }
       const json = exportTransactionsJSON();
-      downloadFile(json, `ledger-backup-${new Date().toISOString().split("T")[0]}.json`, "application/json");
+      downloadFile(json, `expense-tracker-backup-${new Date().toISOString().split("T")[0]}.json`, "application/json");
       showToast("JSON backup downloaded", "success");
     });
   }
