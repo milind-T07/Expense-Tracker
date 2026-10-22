@@ -1,5 +1,5 @@
 /* ============================================================
-   LEDGER — Premium Fintech SaaS Design System
+   EXPENSE TRACKER — Premium Fintech SaaS Design System
    Color Palette: Deep Navy & Violet, Accessible Emerald & Coral
    ============================================================ */
 
@@ -217,6 +217,15 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
+.brand-icon-svg {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.brand-logo:hover .brand-icon-svg {
+  transform: scale(1.08) rotate(-3deg);
+}
+
 .brand-icon-ambient {
   position: absolute;
   inset: 0;
@@ -237,11 +246,12 @@ button, input, select, textarea {
 }
 
 .brand-name {
-  font-size: 1.18rem;
+  font-size: 1.12rem;
   color: var(--text-primary);
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .brand-badge {
@@ -719,8 +729,11 @@ button, input, select, textarea {
 }
 
 .breadcrumb-icon {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .breadcrumb-divider {
